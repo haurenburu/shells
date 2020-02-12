@@ -1,7 +1,7 @@
 # atualizar repos
 sudo apt update
-sudo apt upgrade
-sudo apt dist-upgrade
+sudo apt upgrade -y
+sudo apt dist-upgrade -y
 # installar prereqs
 sudo apt install git -y
 sudo apt install curl -y
