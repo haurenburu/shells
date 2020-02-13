@@ -9,8 +9,8 @@ cd gtiscript
 echo '' > logs.txt
 # atualizar repos
 sudo apt update >> logs.txt 2> /dev/null && echo Update: OK || echo Update: Failed
-#sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
-#sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
+sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
+sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
 ### installar prereqs
 sudo apt install curl -y >> logs.txt 2> /dev/null && echo curl: OK || echo curl: Failed
 sudo apt install git -y >> logs.txt 2> /dev/null && echo git: OK || echo  git: Failed
@@ -45,35 +45,38 @@ curl -s https://raw.githubusercontent.com/haurenburu/shells/master/settings.json
 # insomnia
 sudo snap install insomnia >> logs.txt 2> /dev/null && echo Insomnia: OK || echo Insomnia: Failed
 # docker
-sudo snap install docker >> logs.txt 2> /dev/null && echo Docker: OK || echo Docker: Failed
+sudo snap install docker --classic >> logs.txt 2> /dev/null && echo Docker: OK || echo Docker: Failed
 # docker como sudo
-sudo gpasswd -a $USER docker >> logs.txt 2> /dev/null && echo Dockergroup: OK || echo Dockergroup: Failed
-#sudo groupadd docker
-#sudo usermod -aG docker $USER
-#newgrp docker
+sudo addgroup --system docker >> logs.txt 2> /dev/null && echo Docker: OK || echo Docker: Failed
+sudo adduser $USER docker >> logs.txt 2> /dev/null && echo Docker User: OK || echo Docker User: Failed
+newgrp docker >> logs.txt 2> /dev/null && echo Docker Group: OK || echo Docker Group: Failed
+sudo snap disable docker >> logs.txt 2> /dev/null 
+sudo snap enable docker >> logs.txt 2> /dev/null && echo Docker Restart: OK || echo Docker Restart: Failed
 ## TERMINAL
 # zsh
-sudo apt install zsh -y
+sudo apt install zsh -y >> logs.txt 2> /dev/null && echo zsh: OK || echo zsh: Failed
 # omzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# dracula theme
-sudo apt-get install dconf-cli -y
-git clone https://github.com/dracula/gnome-terminal
-./gnome-terminal/install.sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" >> logs.txt 2> /dev/null
 # firacode
-wget https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
-unzip FiraCode_2.zip
-cp -r ttf/. $HOME/.fonts
-TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ font 'Fira Code Medium 12'
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ use-system-font false
+wget -q https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
+unzip FiraCode_2.zip >> logs.txt 2> /dev/null
+cp -r ttf/. $HOME/.fonts >> logs.txt 2> /dev/null && echo Firacode: OK || echo Firacode: Failed
+TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'` >> logs.txt 2> /dev/null
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ font 'Fira Code Medium 12' >> logs.txt 2> /dev/null
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ use-system-font false >> logs.txt 2> /dev/null && echo Font: OK || echo Font: Failed
 # space ship
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)" >> logs.txt 2> /dev/null && echo zPlugin: OK || echo zPlugin: Failed
 
-# plugins zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
-
-cp $HOME/.zshrc $HOME/.zshrc.bkp
+cp $HOME/.zshrc $HOME/.zshrc.bkp >> logs.txt 2> /dev/null
 curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc && echo zshrc: OK || zshrc: Failed
 
-sudo zsh -c "$(git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt")"
-sudo zsh -c "$(ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme")"
+chsh -s $(which zsh) >> logs.txt 2> /dev/null && echo Default Shell: OK || echo Default Shell: Failed
+
+# dracula theme
+sudo apt-get install dconf-cli -y >> logs.txt 2> /dev/null
+git clone https://github.com/dracula/gnome-terminal
+./gnome-terminal/install.sh
+# RUN THIS AFTER LOGOFF (IN ZSH MODE) TODO
+# git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+# ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
