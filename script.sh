@@ -51,14 +51,13 @@ sudo gpasswd -a $USER docker >> logs.txt 2> /dev/null && echo Dockergroup: OK ||
 #sudo groupadd docker
 #sudo usermod -aG docker $USER
 #newgrp docker
-
 ## TERMINAL
 # zsh
-sudo apt install zsh
+sudo apt install zsh -y
 # omzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # dracula theme
-sudo apt-get install dconf-cli
+sudo apt-get install dconf-cli -y
 git clone https://github.com/dracula/gnome-terminal
 ./gnome-terminal/install.sh
 # firacode
@@ -77,4 +76,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc
 
 cp $HOME/.zshrc $HOME/.zshrc.bkp
 curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc && echo zshrc: OK || zshrc: Failed
-
+# lol
