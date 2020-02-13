@@ -62,10 +62,10 @@ sudo apt-get install dconf-cli
 git clone https://github.com/dracula/gnome-terminal
 ./gnome-terminal/install.sh
 # firacode
-curl https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip -o firacode.zip
-unzip firacode.zip
+wget https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
+unzip FiraCode_2.zip
 cp -r ttf/. $HOME/.fonts
-TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`/
+TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ font 'Fira Code Medium 12'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ use-system-font false
 # plugins zsh
@@ -74,5 +74,5 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 cp $HOME/.zshrc $HOME/.zshrc.bkp
-curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc2 && echo zshrc: OK || zshrc: Failed
+curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc && echo zshrc: OK || zshrc: Failed
 
