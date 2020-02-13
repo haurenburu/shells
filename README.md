@@ -2,7 +2,16 @@
 ``sudo apt update``
 
 ``sudo apt upgrade``
-## o script vai:
+## Para executar sem baixar:
+- instale o curl
+
+``sudo apt install curl``
+
+- execute o script
+
+``curl -s https://raw.githubusercontent.com/haurenburu/shells/master/install.sh | bash -s``
+
+##
 - installar prereqs
 - instalar o nvm
 - instalar o node (10.15.2)
