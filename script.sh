@@ -8,75 +8,72 @@ mkdir gtiscript
 cd gtiscript
 echo '' > logs.txt
 # atualizar repos
-sudo apt update >> logs.txt 2> /dev/null && echo Update: OK || echo Update: Failed
-sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
-sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
+sudo apt update 
+sudo apt upgrade -y 
+sudo apt dist-upgrade -y 
 ### installar prereqs
-sudo apt install curl -y >> logs.txt 2> /dev/null && echo curl: OK || echo curl: Failed
-sudo apt install git -y >> logs.txt 2> /dev/null && echo git: OK || echo  git: Failed
-sudo apt install build-essential -y >> logs.txt 2> /dev/null && echo Build Tools: OK || echo Build Tools: Failed
+sudo apt install curl -y 
+sudo apt install git -y 
+sudo apt install build-essential -y 
 ### installar node
-curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash >> logs.txt 2> /dev/null && echo nvm: OK || nvm: Failed
+curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash 
 ### Para nao precisar reiniciar o bash
 sleep 0.5
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" >> logs.txt 2> /dev/null
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 sleep 0.5
 ## instalar versao 10.15.2
-nvm install $NODEV >> logs.txt 2> /dev/null
-nvm use $NODEV  >> logs.txt 2> /dev/null && echo node: OK || node: Failed
+nvm install $NODEV 
+nvm use $NODEV  
 ## yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - >> logs.txt 2> /dev/null
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list >> logs.txt 2> /dev/null
-sudo apt update >> logs.txt 2> /dev/null
-sudo apt install --no-install-recommends yarn -y >> logs.txt 2> /dev/null && echo Yarn: OK || echo Yarn: Failed
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
+sudo apt update 
+sudo apt install --no-install-recommends yarn -y 
 # vscode
-sudo snap install code --classic >> logs.txt 2> /dev/null && echo Code: OK || echo Code: Failed
+sudo snap install code --classic 
 sleep 0.5
 # extensions
-code --install-extension sdras.vue-vscode-extensionpack >> logs.txt 2> /dev/null && echo VuePack: OK || VuePack: Failed
-code --install-extension dbaeumer.vscode-eslint >> logs.txt 2> /dev/null && echo EsLint: OK || EsLint: Failed
+code --install-extension sdras.vue-vscode-extensionpack 
+code --install-extension dbaeumer.vscode-eslint 
 # temas
-code --install-extension PKief.material-icon-theme >> logs.txt 2> /dev/null && echo Material-icon: OK || Material-icon: Failed
-code --install-extension dracula-theme.theme-dracula >> logs.txt 2> /dev/null && echo Dracula: OK || Dracula: Failed
+code --install-extension PKief.material-icon-theme 
+code --install-extension dracula-theme.theme-dracula 
 # config
 curl -s https://raw.githubusercontent.com/haurenburu/shells/master/settings.json > $HOME/.config/Code/User/settings.json && echo VSConfig: OK || VSConfig: Failed
 # insomnia
-sudo snap install insomnia >> logs.txt 2> /dev/null && echo Insomnia: OK || echo Insomnia: Failed
+sudo snap install insomnia 
 # docker
-sudo snap install docker --classic >> logs.txt 2> /dev/null && echo Docker: OK || echo Docker: Failed
+sudo snap install docker --classic 
 # docker como sudo
-sudo addgroup --system docker >> logs.txt 2> /dev/null && echo Docker: OK || echo Docker: Failed
-sudo adduser $USER docker >> logs.txt 2> /dev/null && echo Docker User: OK || echo Docker User: Failed
-newgrp docker >> logs.txt 2> /dev/null && echo Docker Group: OK || echo Docker Group: Failed
-sudo snap disable docker >> logs.txt 2> /dev/null 
-sudo snap enable docker >> logs.txt 2> /dev/null && echo Docker Restart: OK || echo Docker Restart: Failed
+sudo addgroup --system docker 
+sudo adduser $USER docker
 ## TERMINAL
 # zsh
-sudo apt install zsh -y >> logs.txt 2> /dev/null && echo zsh: OK || echo zsh: Failed
+sudo apt install zsh -y 
 # omzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" >> logs.txt 2> /dev/null
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
 # firacode
 wget -q https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip
-unzip FiraCode_2.zip >> logs.txt 2> /dev/null
-cp -r ttf/. $HOME/.fonts >> logs.txt 2> /dev/null && echo Firacode: OK || echo Firacode: Failed
-TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'` >> logs.txt 2> /dev/null
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ font 'Fira Code Medium 12' >> logs.txt 2> /dev/null
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ use-system-font false >> logs.txt 2> /dev/null && echo Font: OK || echo Font: Failed
-# space ship
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)" >> logs.txt 2> /dev/null && echo zPlugin: OK || echo zPlugin: Failed
-
-cp $HOME/.zshrc $HOME/.zshrc.bkp >> logs.txt 2> /dev/null
-curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc && echo zshrc: OK || zshrc: Failed
-
-chsh -s $(which zsh) >> logs.txt 2> /dev/null && echo Default Shell: OK || echo Default Shell: Failed
+unzip FiraCode_2.zip 
+cp -r ttf/. $HOME/.fonts 
+TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'` 
+gsettings set orgzsh.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ font 'Fira Code Medium 12' 
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ use-system-font false 
+# zsh zplugin
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)" 
 
 # dracula theme
-sudo apt-get install dconf-cli -y >> logs.txt 2> /dev/null
+sudo apt-get install dconf-cli -y 
 git clone https://github.com/dracula/gnome-terminal
 ./gnome-terminal/install.sh
+
+cp $HOME/.zshrc $HOME/.zshrc.bkp 
+
 # RUN THIS AFTER LOGOFF (IN ZSH MODE) TODO
 # git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 # ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+# curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc
+# newgrp docker 
 
