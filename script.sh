@@ -9,8 +9,8 @@ cd gtiscript
 echo '' > logs.txt
 # atualizar repos
 sudo apt update >> logs.txt 2> /dev/null && echo Update: OK || echo Update: Failed
-#sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
-#sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
+sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
+sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
 ### installar prereqs
 sudo apt install curl -y >> logs.txt 2> /dev/null && echo curl: OK || echo curl: Failed
 sudo apt install git -y >> logs.txt 2> /dev/null && echo git: OK || echo  git: Failed
@@ -54,11 +54,11 @@ sudo gpasswd -a $USER docker >> logs.txt 2> /dev/null && echo Dockergroup: OK ||
 
 ## TERMINAL
 # zsh
-sudo apt install zsh -y
+sudo apt install zsh
 # omzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # dracula theme
-sudo apt install dconf-cli -y
+sudo apt-get install dconf-cli
 git clone https://github.com/dracula/gnome-terminal
 ./gnome-terminal/install.sh
 # firacode
@@ -68,11 +68,13 @@ cp -r ttf/. $HOME/.fonts
 TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ font 'Fira Code Medium 12'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$TERMINAL_PROFILE/ use-system-font false
-# plugins zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 # space ship
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+# plugins zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+
 cp $HOME/.zshrc $HOME/.zshrc.bkp
 curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc && echo zshrc: OK || zshrc: Failed
 
