@@ -41,7 +41,7 @@ code --install-extension dbaeumer.vscode-eslint
 code --install-extension PKief.material-icon-theme 
 code --install-extension dracula-theme.theme-dracula 
 # config
-curl -s https://raw.githubusercontent.com/haurenburu/shells/master/settings.json > $HOME/.config/Code/User/settings.json && echo VSConfig: OK || VSConfig: Failed
+curl -s https://raw.githubusercontent.com/haurenburu/shells/master/config/settings.json > $HOME/.config/Code/User/settings.json
 # insomnia
 sudo snap install insomnia 
 # docker
@@ -79,5 +79,5 @@ git clone https://github.com/dracula/gnome-terminal
 # RUN THIS AFTER LOGOFF (IN ZSH MODE) TODO
 # git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
 # ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-# curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc
+# curl -s https://raw.githubusercontent.com/haurenburu/shells/master/config/zshrc > ~/.zshrc
 
