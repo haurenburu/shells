@@ -9,8 +9,8 @@ cd gtiscript
 echo '' > logs.txt
 # atualizar repos
 sudo apt update >> logs.txt 2> /dev/null && echo Update: OK || echo Update: Failed
-sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
-sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
+#sudo apt upgrade -y >> logs.txt 2> /dev/null && echo Upgrade: OK || echo Upgrade: Failed
+#sudo apt dist-upgrade -y >> logs.txt 2> /dev/null && echo Dist-upgrade: OK || echo Dist-upgrade: Failed
 ### installar prereqs
 sudo apt install curl -y >> logs.txt 2> /dev/null && echo curl: OK || echo curl: Failed
 sudo apt install git -y >> logs.txt 2> /dev/null && echo git: OK || echo  git: Failed
