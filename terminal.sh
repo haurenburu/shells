@@ -23,3 +23,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc
 
 cp $HOME/.zshrc $HOME/.zshrc.bkp
 curl -s https://raw.githubusercontent.com/haurenburu/shells/master/zshrc > $HOME/.zshrc && echo zshrc: OK || zshrc: Failed
+# lol
