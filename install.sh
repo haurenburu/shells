@@ -8,9 +8,9 @@ mkdir gtiscript
 cd gtiscript
 echo '' > logs.txt
 # atualizar repos
-sudo apt update 
-sudo apt upgrade -y 
-sudo apt dist-upgrade -y 
+#sudo apt update 
+#sudo apt upgrade -y 
+#sudo apt dist-upgrade -y 
 ### installar prereqs
 sudo apt install curl -y 
 sudo apt install git -y 
