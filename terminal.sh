@@ -1,10 +1,10 @@
 ## TERMINAL
 # zsh
-sudo apt install zsh
+sudo apt install zsh -y
 # omzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # dracula theme
-sudo apt-get install dconf-cli
+sudo apt-get install dconf-cli -y
 git clone https://github.com/dracula/gnome-terminal
 ./gnome-terminal/install.sh
 # firacode
