@@ -1,17 +1,10 @@
 ## Para executar o script:
-``sudo apt update && \
-sudo apt upgrade && \
-wget -O - https://raw.githubusercontent.com/haurenburu/shells/master/install.sh | bash ``
+```
+sudo apt update &&  
+sudo apt upgrade &&  
+wget -O - https://raw.githubusercontent.com/haurenburu/shells/master/install.sh | bash
 
-## Para executar sem baixar:
-- instale o curl
-
-``sudo apt install curl``
-
-- execute o script
-
-``curl -s https://raw.githubusercontent.com/haurenburu/shells/master/install.sh | bash -s``
-
+```
 ##
 - installar prereqs
 - instalar o nvm
