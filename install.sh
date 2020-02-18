@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #variaveis
-NODEV=10.15.2
+NODEV=stable
 
 #limpar logs
 mkdir gtiscript
