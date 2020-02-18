@@ -1,7 +1,6 @@
-## Antes de executar atualize os repositorios
-``sudo apt update``
+## Para executar o script:
+``sudo apt update && sudo apt upgrade && wget -O - https://raw.githubusercontent.com/haurenburu/shells/master/install.sh | bash ``
 
-``sudo apt upgrade``
 ## Para executar sem baixar:
 - instale o curl
 
@@ -23,11 +22,11 @@
   * Material Icon theme
   * Dracula theme
 - Load das Configurações do VS Code
-- Instala o insomnia
-- Instala o Docker
-- Instala o zsh
-- Instala o Oh My ZSH
-- Firacode
+- Instalar o insomnia
+- Instalar o Docker
+- Instalar o zsh
+- Instalar o Oh My ZSH
+- Instalar o Firacode
 - Instalar o Dracula (Terminal)
 
 ## Após a instalação faça logoff e execute os seguintes comandos (no modo zsh)
